@@ -6,4 +6,4 @@ Astor Bonarelli Castets. astor.bonarelli@gmail.com
 
 Tematica: Base de datos comercial.
 
-Descripcion de la tematica: 
+Descripcion de la tematica: Base de datos de productos aromaticos
