@@ -18,25 +18,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `tabla categoria`
+-- Base de datos: `velas`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tablacategoria`
+-- Estructura de tabla para la tabla `categorias`
 --
 
-CREATE TABLE `tablacategoria` (
-  `ID_Categoria` int(200) NOT NULL,
-  `Nombre_Categoria` varchar(20) NOT NULL
+CREATE TABLE `categorias` (
+  `ID_Categoria` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre_Categoria` varchar(20) NOT NULL,
+  PRIMARY KEY (`ID_Categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `tablacategoria`
+-- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `tablacategoria` (`ID_Categoria`, `Nombre_Categoria`) VALUES
+INSERT INTO `categorias` (`ID_Categoria`, `Nombre_Categoria`) VALUES
 (1, 'Velas'),
 (2, 'Aromatizadores de Au'),
 (3, 'Aromatizadores de Am');
@@ -44,76 +45,47 @@ INSERT INTO `tablacategoria` (`ID_Categoria`, `Nombre_Categoria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tablaproductos`
+-- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE `tablaproductos` (
-  `ID_Producto` int(11) NOT NULL,
+CREATE TABLE `productos` (
+  `ID_Producto` int(11) NOT NULL AUTO_INCREMENT,
   `Nombre_producto` varchar(20) NOT NULL,
-  `Precio` varchar(20) NOT NULL,
-  `ID_Categoria` int(11) NOT NULL
+  `Precio` DECIMAL(10,2) NOT NULL,
+  `ID_Categoria` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Producto`),
+  KEY `ID_Categoria` (`ID_Categoria`),
+  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`ID_Categoria`) REFERENCES `categorias` (`ID_Categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Volcado de datos para la tabla `tablaproductos`
+-- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `tablaproductos` (`ID_Producto`, `Nombre_producto`, `Precio`, `ID_Categoria`) VALUES
-(1, 'Coco y Vanilla', '2.000', 1),
-(2, 'Lavanda', '2.000', 1),
-(3, 'Lemongrass', '2.200', 1),
-(4, 'Sandalo', '2.100', 1),
-(5, 'Naranja', '2.200', 1),
-(6, 'Wanama', '2.000', 1),
-(7, 'Sandalo', '3.000', 2),
-(8, 'Coco y Vainilla', '3.100', 2),
-(9, 'Lavanda', '3.200', 2),
-(10, 'Lemongrass', '4.500', 3),
-(11, 'Lavanda', '4.500', 3),
-(12, 'Coco y Vainilla', '4.500', 3);
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `tablacategoria`
---
-ALTER TABLE `tablacategoria`
-  ADD PRIMARY KEY (`ID_Categoria`);
-
---
--- Indices de la tabla `tablaproductos`
---
-ALTER TABLE `tablaproductos`
-  ADD PRIMARY KEY (`ID_Producto`),
-  ADD KEY `ID_Categoria` (`ID_Categoria`);
+INSERT INTO `productos` (`ID_Producto`, `Nombre_producto`, `Precio`, `ID_Categoria`) VALUES
+(1, 'Coco y Vanilla', 2000.00, 1),
+(2, 'Lavanda', 2000.00, 1),
+(3, 'Lemongrass', 2200.00, 1),
+(4, 'Sandalo', 2100.00, 1),
+(5, 'Naranja', 2200.00, 1),
+(6, 'Wanama', 2000.00, 1),
+(7, 'Sandalo', 3000.00, 2),
+(8, 'Coco y Vainilla', 3100.00, 2),
+(9, 'Lavanda', 3200.00, 2),
+(10, 'Lemongrass', 4500.00, 3),
+(11, 'Lavanda', 4500.00, 3),
+(12, 'Coco y Vainilla', 4500.00, 3);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
---
--- AUTO_INCREMENT de la tabla `tablacategoria`
---
-ALTER TABLE `tablacategoria`
-  MODIFY `ID_Categoria` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `categorias`
+  MODIFY `ID_Categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
---
--- AUTO_INCREMENT de la tabla `tablaproductos`
---
-ALTER TABLE `tablaproductos`
+ALTER TABLE `productos`
   MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `tablaproductos`
---
-ALTER TABLE `tablaproductos`
-  ADD CONSTRAINT `tablaproductos_ibfk_1` FOREIGN KEY (`ID_Categoria`) REFERENCES `tablacategoria` (`ID_Categoria`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
