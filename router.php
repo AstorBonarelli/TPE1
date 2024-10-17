@@ -15,14 +15,16 @@ if (!empty($_GET['action'])) {
 $params = explode('/', $action); 
 
 $velasController = new VelasController();
-$categoriasController = new CategoriasController(); // Instanciar el controlador de categorías
+$categoriasController = new CategoriasController(); 
+$categoriaID = isset($_GET['categoria']) ? $_GET['categoria'] : null;
+
     
 switch ($params[0]) {
     case 'inicio':
-        $velasController->showVelas();
+        $velasController->showVelas($categoriaID); 
         break;
     case 'velas':
-        $velasController->showVelas(); 
+        $velasController->showVelas($categoriaID); 
         break;
     case 'categorias': 
         $categoriasController->showCategorias();

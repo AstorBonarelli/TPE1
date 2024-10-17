@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{$BASE_URL}css/styles.css">
+
 {include file='header.tpl'}
 
 <h1>Listado de Categorías</h1>

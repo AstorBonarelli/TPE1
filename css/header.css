@@ -34,6 +34,7 @@
   color: #fff; 
   background-color: #ffc107; 
   opacity: 0.8; 
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

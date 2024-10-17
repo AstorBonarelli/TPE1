@@ -1,21 +1,27 @@
 <?php
 
 require_once 'app/models/velas.model.php';
+require_once 'app/models/categorias.model.php';
 require_once 'app/views/velas.view.php';
 
 class VelasController {
-
-    private $model;
+    private $velasModel;
+    private $categoriasModel;
     private $view;
 
     public function __construct() {
-        $this->model = new VelasModel();
+        $this->velasModel = new VelasModel();
+        $this->categoriasModel = new CategoriasModel();  
         $this->view = new VelasView();
     }
 
-    function showVelas() {
-        $velas = $this->model->getVelas();
-
-        $this->view->mostrarVelas($velas, 'velas');
+    function showVelas($categoriaID = null) {
+        $categorias = $this->categoriasModel->getCategorias();
+        if ($categoriaID) {
+            $velas = $this->velasModel->getVelasByCategory($categoriaID);
+        } else {
+            $velas = $this->velasModel->getVelas();
+        }
+        $this->view->mostrarVelas($velas, $categorias, $categoriaID, 'velas');
     }
 }

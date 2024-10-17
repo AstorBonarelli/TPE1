@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.4.1, created on 2024-10-15 21:12:39
+/* Smarty version 5.4.1, created on 2024-10-16 00:46:10
   from 'file:categorias.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.4.1',
-  'unifunc' => 'content_670ebea74ee9e1_34095216',
+  'unifunc' => 'content_670ef0b2602a07_58238075',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '97f58216c2b8b604155db362b4616da67b23d0c4' => 
     array (
       0 => 'categorias.tpl',
-      1 => 1729019551,
+      1 => 1729032330,
       2 => 'file',
     ),
   ),
@@ -21,9 +21,12 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:header.tpl' => 1,
   ),
 ))) {
-function content_670ebea74ee9e1_34095216 (\Smarty\Template $_smarty_tpl) {
+function content_670ef0b2602a07_58238075 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\TPE2\\templates';
-$_smarty_tpl->renderSubTemplate('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?><link rel="stylesheet" href="<?php echo $_smarty_tpl->getValue('BASE_URL');?>
+css/styles.css">
+
+<?php $_smarty_tpl->renderSubTemplate('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
 
 <h1>Listado de Categorías</h1>
