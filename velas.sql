@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2024 a las 23:52:19
+-- Tiempo de generación: 20-10-2024 a las 18:30:07
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,19 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `categorias` (
-  `ID_Categoria` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_Categoria` int(11) NOT NULL,
   `Nombre_Categoria` varchar(20) NOT NULL,
-  PRIMARY KEY (`ID_Categoria`)
+  `Imagen_Categoria` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `categorias`
 --
 
-INSERT INTO `categorias` (`ID_Categoria`, `Nombre_Categoria`) VALUES
-(1, 'Velas'),
-(2, 'Aromatizadores de Au'),
-(3, 'Aromatizadores de Am');
+INSERT INTO `categorias` (`ID_Categoria`, `Nombre_Categoria`, `Imagen_Categoria`) VALUES
+(1, 'Velas', 'https://media.istockphoto.com/id/1287042903/es/foto/velas-perfumadas-sobre-fondo-blanco.jpg?s=612x612&w=0&k=20&c=6E47i-mvIygJGsaFcccTBEmxdS6Oj9Hl8faD0hS4xNg='),
+(2, 'Aromatizadores de Au', 'https://www.shutterstock.com/image-photo/flavoring-cars-very-good-smells-600nw-1950118261.jpg'),
+(3, 'Aromatizadores de Am', 'https://cdn.shopify.com/s/files/1/0732/7734/1971/files/A53D___AROMATIZADOR_AMBIENTES_Y_TEXTIL_NECTARINE_c.jpg?v=1686235389');
 
 -- --------------------------------------------------------
 
@@ -49,13 +49,10 @@ INSERT INTO `categorias` (`ID_Categoria`, `Nombre_Categoria`) VALUES
 --
 
 CREATE TABLE `productos` (
-  `ID_Producto` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_Producto` int(11) NOT NULL,
   `Nombre_producto` varchar(20) NOT NULL,
-  `Precio` DECIMAL(10,2) NOT NULL,
-  `ID_Categoria` int(11) NOT NULL,
-  PRIMARY KEY (`ID_Producto`),
-  KEY `ID_Categoria` (`ID_Categoria`),
-  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`ID_Categoria`) REFERENCES `categorias` (`ID_Categoria`)
+  `Precio` decimal(10,2) NOT NULL,
+  `ID_Categoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -77,15 +74,47 @@ INSERT INTO `productos` (`ID_Producto`, `Nombre_producto`, `Precio`, `ID_Categor
 (12, 'Coco y Vainilla', 4500.00, 3);
 
 --
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`ID_Categoria`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`ID_Producto`),
+  ADD KEY `ID_Categoria` (`ID_Categoria`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `categorias`
+--
 ALTER TABLE `categorias`
   MODIFY `ID_Categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
 ALTER TABLE `productos`
   MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`ID_Categoria`) REFERENCES `categorias` (`ID_Categoria`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

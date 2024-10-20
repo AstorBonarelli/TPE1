@@ -17,4 +17,20 @@ class VelasView {
         $this->smarty->assign('action', $action);
         $this->smarty->display('velas.tpl');
     }
+
+
+    function mostrarDetalleVela($vela,$categorias,$action) {
+        $this->smarty->assign('vela', $vela);
+        $this->smarty->assign('action', $action);
+        $this->smarty->assign('categorias', $categorias);
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->display('detalleProducto.tpl'); 
+    }
+
+    function mostrarFormularioAgregar($categorias) {
+        $this->smarty->assign('categorias', $categorias);
+        $this->smarty->assign('BASE_URL', BASE_URL);
+        $this->smarty->display('agregarProducto.tpl'); 
+    }
+    
 }
