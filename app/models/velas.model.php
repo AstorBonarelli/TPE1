@@ -33,9 +33,9 @@ class VelasModel {
         $sql = "SELECT p.*, c.Nombre_Categoria AS CategoriaNombre 
                 FROM productos p 
                 JOIN categorias c ON p.ID_Categoria = c.ID_Categoria 
-                WHERE p.ID_Categoria = ?";
+                WHERE p.ID_Categoria = $categoriaID";
         $query = $pdo->prepare($sql);
-        $query->execute([$categoriaID]);
+        $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
@@ -45,34 +45,34 @@ class VelasModel {
         $sql = "SELECT p.*, c.Nombre_Categoria AS CategoriaNombre 
                 FROM productos p 
                 JOIN categorias c ON p.ID_Categoria = c.ID_Categoria 
-                WHERE p.ID_Producto = ?";
+                WHERE p.ID_Producto = $idProducto";
         $query = $pdo->prepare($sql);
-        $query->execute([$idProducto]);
+        $query->execute();
         return $query->fetch(PDO::FETCH_OBJ);
     }
 
     //editar producto
     public function editProducto($idProducto, $nombre, $precio, $categoriaID) {
         $pdo = $this->crearConexion();
-        $sql = "UPDATE productos SET Nombre_producto = ?, Precio = ?, ID_Categoria = ? WHERE ID_Producto = ?";
+        $sql = "UPDATE productos SET Nombre_producto = $nombre, Precio = $precio, ID_Categoria = $categoriaID WHERE ID_Producto = $idProducto";
         $query = $pdo->prepare($sql);
         
-        return $query->execute([$nombre, $precio, $categoriaID, $idProducto]);
+        return $query->execute();
     }
 
     //crar producto
     public function crearProducto($nombre, $precio, $categoriaID) {
         $pdo = $this->crearConexion();
-        $sql = "INSERT INTO productos (Nombre_producto, Precio, ID_Categoria) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO productos (Nombre_producto, Precio, ID_Categoria) VALUES ($nombre, $precio, $categoriaID)";
         $query = $pdo->prepare($sql);
-        return $query->execute([$nombre, $precio, $categoriaID]);
+        return $query->execute();
     }
     //eliminar producto
     public function deleteProducto($idProducto) {
         $pdo = $this->crearConexion();
-        $sql = "DELETE FROM productos WHERE ID_Producto = ?";
+        $sql = "DELETE FROM productos WHERE ID_Producto = $idProducto";
         $query = $pdo->prepare($sql);
-        return $query->execute([$idProducto]);
+        return $query->execute();
     }
     
     
